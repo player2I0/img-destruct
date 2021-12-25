@@ -222,7 +222,7 @@
                                 <friction>0.8</friction>
                                 <disabled-at-start>No</disabled-at-start>
                                 <segment-shape-radius>0</segment-shape-radius>
-                                <prevent-rotation>No</prevent-rotation>
+                                <prevent-rotation>Yes</prevent-rotation>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>
