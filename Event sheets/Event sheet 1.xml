@@ -1,0 +1,838 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="siz" sid="182131812721267" static="0" type="number">0</variable>
+        <variable constant="0" name="ox" sid="465859161015475" static="0" type="number">0</variable>
+        <variable constant="0" name="oy" sid="515110089728919" static="0" type="number">0</variable>
+        <variable constant="0" name="url" sid="671765542703775" static="0" type="text"></variable>
+        <variable constant="0" name="backing" sid="759021847747279" static="0" type="number">0</variable>
+        <variable constant="0" name="alc" sid="539909985620356" static="0" type="number">0</variable>
+        <event-block sid="475847073858713">
+            <conditions>
+                <condition id="0" name="On function" sid="991834455008062" type="Function">
+                    <param id="0" name="Name">&quot;Destruct&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action disabled="1" id="-16" name="Wait" sid="395572172182531" type="System">
+                    <param id="0" name="Seconds">0.0001*loopindex</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="621845613230472">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="589505061459791" type="obj">
+                            <param id="0" name="Unique ID">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="932320329100154">
+                            <conditions>
+                                <condition id="-10" name="For" sid="810408336395305" type="System">
+                                    <param id="0" name="Name">&quot;x&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">floor(obj.Width/siz)</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="108482122967289">
+                                    <conditions>
+                                        <condition id="-10" name="For" sid="174272832923686" type="System">
+                                            <param id="0" name="Name">&quot;y&quot;</param>
+                                            <param id="1" name="Start index">0</param>
+                                            <param id="2" name="End index">floor(obj.height/siz)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="963340351661521" type="System">
+                                            <param id="0" name="Object to create">Canvas</param>
+                                            <param id="1" name="Layer">&quot;game&quot;</param>
+                                            <param id="2" name="X">obj.ImagePointX(1)+(siz*loopindex(&quot;x&quot;))</param>
+                                            <param id="3" name="Y">obj.ImagePointY(1)+(siz*loopindex(&quot;y&quot;))</param>
+                                        </action>
+                                        <action id="-7" name="Set size" sid="138539369554938" type="Canvas">
+                                            <param id="0" name="Width">siz</param>
+                                            <param id="1" name="Height">siz</param>
+                                        </action>
+                                        <action id="4" name="Paste Object" sid="772113034555110" type="Canvas">
+                                            <param id="0" name="object">obj</param>
+                                        </action>
+                                        <action behavior="Chipmunk" id="0" name="Set velocity" sid="941216080592259" type="Canvas">
+                                            <param id="0" name="Velocity: vector type">1</param>
+                                            <param id="1" name="Velocity: x or angle">angle(obj.X, obj.Y, Canvas.X, Canvas.Y)</param>
+                                            <param id="2" name="Velocity: y or dist">50</param>
+                                        </action>
+                                        <action id="-24" name="Move to top" sid="368049282161941" type="Canvas" />
+                                        <action behavior="Chipmunk" id="14" name="Set torque" sid="460215138836683" type="Canvas">
+                                            <param id="0" name="Torque">angle(obj.X, obj.Y, Canvas.X, Canvas.Y)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="900994387116493" type="Canvas">
+                                            <param id="0" name="Instance variable">sx</param>
+                                            <param id="1" name="Value">Self.X</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="707309567194333" type="Canvas">
+                                            <param id="0" name="Instance variable">sy</param>
+                                            <param id="1" name="Value">Self.y</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="142162518592714" type="Canvas">
+                                            <param id="0" name="Instance variable">starting</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="791186161535552">
+                                            <conditions />
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="187975623397273" type="System">
+                                                    <param id="0" name="Variable">alc</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="236202781705865">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="990613161230844" type="System">
+                                                    <param id="0" name="Variable">siz</param>
+                                                    <param id="1" name="Comparison">2</param>
+                                                    <param id="2" name="Value">5</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="518126751779568">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="337169715560876" type="System">
+                                                            <param id="0" name="First value">Canvas.alphaAt(round(Canvas.Width/2), round(Canvas.Height/2))</param>
+                                                            <param id="1" name="Comparison">3</param>
+                                                            <param id="2" name="Second value">0.2</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Destroy" sid="864403845120020" type="Canvas" />
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="968587544986705">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="505259050518853" type="System">
+                                                    <param id="0" name="Variable">siz</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Value">5</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="792387813187704">
+                                                    <conditions>
+                                                        <condition id="-12" name="Repeat" sid="416018161116732" type="System">
+                                                            <param id="0" name="Count">siz</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <event-block sid="721531320982624">
+                                                            <conditions>
+                                                                <condition id="-8" name="Compare two values" sid="190115101599654" type="System">
+                                                                    <param id="0" name="First value">Canvas.alphaAt(0, 1*loopindex)</param>
+                                                                    <param id="1" name="Comparison">5</param>
+                                                                    <param id="2" name="Second value">0.2</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Add to" sid="164110890675079" type="System">
+                                                                    <param id="0" name="Variable">alc</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                        <event-block sid="595143050780756">
+                                                            <conditions>
+                                                                <condition id="-8" name="Compare two values" sid="155951726326907" type="System">
+                                                                    <param id="0" name="First value">Canvas.alphaAt(Canvas.Width, 1*loopindex)</param>
+                                                                    <param id="1" name="Comparison">5</param>
+                                                                    <param id="2" name="Second value">0.2</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Add to" sid="919896210968675" type="System">
+                                                                    <param id="0" name="Variable">alc</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                                <event-block sid="921221738959843">
+                                                    <conditions>
+                                                        <condition id="-12" name="Repeat" sid="785712716243179" type="System">
+                                                            <param id="0" name="Count">siz</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <event-block sid="957365668445588">
+                                                            <conditions>
+                                                                <condition id="-8" name="Compare two values" sid="982751166722266" type="System">
+                                                                    <param id="0" name="First value">Canvas.alphaAt(1*loopindex, 0)</param>
+                                                                    <param id="1" name="Comparison">5</param>
+                                                                    <param id="2" name="Second value">0.2</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Add to" sid="958639666840876" type="System">
+                                                                    <param id="0" name="Variable">alc</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                        <event-block sid="890918050359413">
+                                                            <conditions>
+                                                                <condition id="-8" name="Compare two values" sid="474608743758395" type="System">
+                                                                    <param id="0" name="First value">Canvas.alphaAt(1*loopindex, Canvas.Height)</param>
+                                                                    <param id="1" name="Comparison">5</param>
+                                                                    <param id="2" name="Second value">0.2</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Add to" sid="508527256018249" type="System">
+                                                                    <param id="0" name="Variable">alc</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                                <event-block sid="269870739166556">
+                                                    <conditions>
+                                                        <condition id="-14" name="Compare variable" sid="925084299845337" type="System">
+                                                            <param id="0" name="Variable">alc</param>
+                                                            <param id="1" name="Comparison">2</param>
+                                                            <param id="2" name="Value">siz+5</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Destroy" sid="384623738652968" type="Canvas" />
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block disabled="1" sid="553689007876405">
+                                            <conditions>
+                                                <condition id="-10" name="For" sid="162973233977360" type="System">
+                                                    <param id="0" name="Name">&quot;xx&quot;</param>
+                                                    <param id="1" name="Start index">0</param>
+                                                    <param id="2" name="End index">Canvas.Width</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block sid="741789513333856">
+                                                    <conditions>
+                                                        <condition id="-10" name="For" sid="250272325413984" type="System">
+                                                            <param id="0" name="Name">&quot;yy&quot;</param>
+                                                            <param id="1" name="Start index">0</param>
+                                                            <param id="2" name="End index">Canvas.height</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <event-block sid="219676264655814">
+                                                            <conditions>
+                                                                <condition id="-8" name="Compare two values" sid="383243575093678" type="System">
+                                                                    <param id="0" name="First value">Canvas.alphaAt(loopindex(&quot;xx&quot;), loopindex(&quot;yy&quot;))</param>
+                                                                    <param id="1" name="Comparison">3</param>
+                                                                    <param id="2" name="Second value">0.2</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Add to" sid="474551026972475" type="System">
+                                                                    <param id="0" name="Variable">alc</param>
+                                                                    <param id="1" name="Value">1</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block disabled="1" sid="915683468358031">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="146129042118148" type="System">
+                                                    <param id="0" name="Variable">alc</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Value">(Canvas.Width*Canvas.Height)-1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="142852169077228" type="Canvas" />
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="933985655595943">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Destroy" sid="979126204072802" type="obj" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="922710922699875">
+            <conditions>
+                <condition id="3" name="On touched object" sid="360233188093855" type="Touch">
+                    <param id="0" name="Object">obj</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="401139895970195" type="Function">
+                    <param id="0" name="Name">&quot;Destruct&quot;</param>
+                    <param id="1" name="Parameter {n}">obj.UID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="341566513770362">
+            <conditions>
+                <condition id="2" name="Is in touch" sid="248127609729290" type="Touch" />
+                <condition id="4" inverted="1" name="Is touching object" sid="383113827717274" type="Touch">
+                    <param id="0" name="Object">obj</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" sid="890780742489377" type="Touch">
+                    <param id="0" name="Object">Button</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Chipmunk" id="0" name="Set velocity" sid="223626795766192" type="Canvas">
+                    <param id="0" name="Velocity: vector type">1</param>
+                    <param id="1" name="Velocity: x or angle">angle(Self.X, Self.Y, Touch.X, Touch.Y)</param>
+                    <param id="2" name="Velocity: y or dist">125</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="879761054956529">
+            <conditions>
+                <condition id="15" name="On double-tap" sid="551038410409044" type="Touch" />
+                <condition id="4" inverted="1" name="Is touching object" sid="706539655541127" type="Touch">
+                    <param id="0" name="Object">obj</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" sid="878634042375296" type="Touch">
+                    <param id="0" name="Object">Button</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Chipmunk" id="0" name="Set velocity" sid="846922360905771" type="Canvas">
+                    <param id="0" name="Velocity: vector type">1</param>
+                    <param id="1" name="Velocity: x or angle">angle(Touch.X, Touch.Y, Self.x, Self.Y)</param>
+                    <param id="2" name="Velocity: y or dist">259</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="834616991949296">
+            <conditions>
+                <condition id="0" name="On changed" sid="277975464256166" type="FileChooser" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="803936315454073" type="Canvas" />
+                <action id="-9" name="Destroy" sid="411423307293852" type="obj" />
+                <action id="-3" name="Create object" sid="595797595973556" type="System">
+                    <param id="0" name="Object to create">Canvas</param>
+                    <param id="1" name="Layer">&quot;game&quot;</param>
+                    <param id="2" name="X">-1000</param>
+                    <param id="3" name="Y">-1000</param>
+                </action>
+                <action id="-3" name="Create object" sid="903465356680679" type="System">
+                    <param id="0" name="Object to create">obj</param>
+                    <param id="1" name="Layer">&quot;game&quot;</param>
+                    <param id="2" name="X">OriginalWindowWidth/2</param>
+                    <param id="3" name="Y">OriginalWindowHeight/2</param>
+                </action>
+                <action id="10" name="Load image from URL" sid="667313141020412" type="obj">
+                    <param id="0" name="URI">FileChooser.FileURLAt(0)</param>
+                    <param id="1" name="Size">1</param>
+                    <param id="2" name="Cross-origin">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="522044765650703">
+            <conditions>
+                <condition id="0" name="On function" sid="176395767758740" type="Function">
+                    <param id="0" name="Name">&quot;Restore&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="130821704115042">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="414926053655734" type="System">
+                            <param id="0" name="Variable">backing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" sid="678745445432766" type="System">
+                            <param id="0" name="Seconds">0.00001</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="380924043845209" type="System">
+                            <param id="0" name="Variable">backing</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="129548219948999">
+                            <conditions>
+                                <condition id="-24" name="For Each (ordered)" sid="215841299873755" type="System">
+                                    <param id="0" name="Object">Canvas</param>
+                                    <param id="1" name="Expression">Canvas.sx&amp;Canvas.sy</param>
+                                    <param id="2" name="Order">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="827294730689701" type="System">
+                                    <param id="0" name="Seconds">(0.0005)*loopindex</param>
+                                </action>
+                                <action behavior="Chipmunk" id="34" name="enable/disable" sid="127452268693619" type="Canvas">
+                                    <param id="0" name="Enable/disable">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="568350900729474" type="Canvas">
+                                    <param id="0" name="Instance variable">starting</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block disabled="1" sid="329204489408681">
+                            <conditions>
+                                <condition id="-24" name="For Each (ordered)" sid="402004044724109" type="System">
+                                    <param id="0" name="Object">Canvas</param>
+                                    <param id="1" name="Expression">Canvas.sx</param>
+                                    <param id="2" name="Order">1</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="922836060319506" type="Canvas">
+                                    <param id="0" name="Instance variable">starting</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="182049996032089" type="System">
+                                    <param id="0" name="Seconds">(0.001)*loopindex</param>
+                                </action>
+                                <action behavior="Chipmunk" id="34" name="enable/disable" sid="110794173634975" type="Canvas">
+                                    <param id="0" name="Enable/disable">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="993022289035414" type="Canvas">
+                                    <param id="0" name="Instance variable">starting</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="970137555739637">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="805982265632662" type="System">
+                            <param id="0" name="Variable">backing</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Wait" sid="838475802144989" type="System">
+                            <param id="0" name="Seconds">0.00001</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="175174962196619" type="System">
+                            <param id="0" name="Variable">backing</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="402675992496483">
+                            <conditions>
+                                <condition id="-24" name="For Each (ordered)" sid="187989549258080" type="System">
+                                    <param id="0" name="Object">Canvas</param>
+                                    <param id="1" name="Expression">Canvas.sx</param>
+                                    <param id="2" name="Order">0</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="590098768798122" type="Canvas">
+                                    <param id="0" name="Instance variable">starting</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Chipmunk" id="34" name="enable/disable" sid="802414502987863" type="Canvas">
+                                    <param id="0" name="Enable/disable">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="350026971492862" type="Canvas">
+                                    <param id="0" name="Instance variable">starting</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="561724194391699">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="268656359769799" type="Canvas">
+                    <param id="0" name="Instance variable">starting</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-8" name="Set angle" sid="356849562323053" type="Canvas">
+                    <param id="0" name="Angle">anglelerp(Self.angle, 0, 1 - 0.0000001 ^ dt)</param>
+                </action>
+                <action id="-3" name="Set position" sid="661814998761320" type="Canvas">
+                    <param id="0" name="X">lerp(Self.X, Self.sx, 1 - 0.001 ^ dt)</param>
+                    <param id="1" name="Y">lerp(Self.y, Self.sy, 1 - 0.001 ^ dt)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="308151091475246">
+            <conditions>
+                <condition id="-18" name="On created" sid="998178360638612" type="obj" />
+            </conditions>
+            <actions />
+        </event-block>
+        <event-group description="" sid="134208047675265" title="control">
+            <sub-events>
+                <event-block sid="666270703663987">
+                    <conditions>
+                        <condition id="-18" name="On created" sid="875842143467905" type="Canvas" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="503425718252307">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="621973848969889" type="List">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;shape&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="482933351893436">
+                                    <conditions>
+                                        <condition id="4" name="Compare selected item text" sid="886017384006685" type="List">
+                                            <param id="0" name="Text to compare">&quot;box&quot;</param>
+                                            <param id="1" name="Case sensitivity">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Chipmunk" id="25" name="Set collision shape" sid="971333710507895" type="Canvas">
+                                            <param id="0" name="Collision shape">1</param>
+                                            <param id="1" name="Segment radius">16</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="197388986255393">
+                                    <conditions>
+                                        <condition id="4" name="Compare selected item text" sid="193155258968424" type="List">
+                                            <param id="0" name="Text to compare">&quot;circle&quot;</param>
+                                            <param id="1" name="Case sensitivity">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Chipmunk" id="25" name="Set collision shape" sid="264970163801534" type="Canvas">
+                                            <param id="0" name="Collision shape">2</param>
+                                            <param id="1" name="Segment radius">16</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="979454214403328">
+                    <conditions>
+                        <condition id="1" name="On selection changed" sid="127177678357020" type="List" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="808412073514235">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="359377504563000" type="List">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;shape&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="625302923213022">
+                                    <conditions>
+                                        <condition id="4" name="Compare selected item text" sid="119563911261347" type="List">
+                                            <param id="0" name="Text to compare">&quot;box&quot;</param>
+                                            <param id="1" name="Case sensitivity">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Wait" sid="159006355012497" type="System">
+                                            <param id="0" name="Seconds">0.1</param>
+                                        </action>
+                                        <action behavior="Chipmunk" id="25" name="Set collision shape" sid="345836965438621" type="Canvas">
+                                            <param id="0" name="Collision shape">1</param>
+                                            <param id="1" name="Segment radius">16</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="506702798356568">
+                                    <conditions>
+                                        <condition id="4" name="Compare selected item text" sid="958814166904371" type="List">
+                                            <param id="0" name="Text to compare">&quot;circle&quot;</param>
+                                            <param id="1" name="Case sensitivity">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-16" name="Wait" sid="952562315612156" type="System">
+                                            <param id="0" name="Seconds">0.1</param>
+                                        </action>
+                                        <action behavior="Chipmunk" id="25" name="Set collision shape" sid="520080225294585" type="Canvas">
+                                            <param id="0" name="Collision shape">2</param>
+                                            <param id="1" name="Segment radius">16</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="867990796439228">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="183298692612315" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="755275896463184">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="894642137672960" type="SliderBar">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;size&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="773355731001128" type="System">
+                                    <param id="0" name="Variable">siz</param>
+                                    <param id="1" name="Value">SliderBar.Value</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="289363006131066">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="527016839498678" type="SliderBar">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;elasticity&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Chipmunk" id="6" name="Set elasticity" sid="387011959203201" type="Canvas">
+                                    <param id="0" name="Elasticity">SliderBar.Value</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="397538595897335">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="304719846484654" type="Text">
+                                            <param id="0" name="Instance variable">name</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;elasticity&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="935774785885364" type="Text">
+                                            <param id="0" name="Text">&quot;elasticity: &quot;&amp;SliderBar.Value</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="216791799439564">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="644036879102689" type="SliderBar">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;mass&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Chipmunk" id="24" name="Set mass" sid="448173194884961" type="Canvas">
+                                    <param id="0" name="Mass">SliderBar.Value</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="713198879736831">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="929898040399942" type="Text">
+                                            <param id="0" name="Instance variable">name</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;mass&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="555201823275234" type="Text">
+                                            <param id="0" name="Text">&quot;mass: &quot;&amp;SliderBar.Value</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="948344235032988">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="974910317916083" type="SliderBar">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;width&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-5" name="Set width" sid="300075724050175" type="obj">
+                                    <param id="0" name="Width">SliderBar.value</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="263335377521779">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="626190032703811" type="Text">
+                                            <param id="0" name="Instance variable">name</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;width&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="989355779717707" type="Text">
+                                            <param id="0" name="Text">&quot;width: &quot;&amp;SliderBar.Value</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="266829872278773">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="132322145863810" type="SliderBar">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;height&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-6" name="Set height" sid="954069772638943" type="obj">
+                                    <param id="0" name="Height">SliderBar.value</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="672529257348041">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="580452823205723" type="Text">
+                                            <param id="0" name="Instance variable">name</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;height&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Set text" sid="937473896732674" type="Text">
+                                            <param id="0" name="Text">&quot;height: &quot;&amp;SliderBar.Value</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="125459972836497">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="527890300607110" type="Text">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;size&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="107757354620178" type="Text">
+                                    <param id="0" name="Text">&quot;size: &quot;&amp;siz</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="885602713378972">
+                    <conditions>
+                        <condition id="0" name="On clicked" sid="894459173429099" type="Button" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="427628018673912">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="356438920835585" type="Button">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;restore&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="178436340320061" type="Function">
+                                    <param id="0" name="Name">&quot;Restore&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="528350967859789">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="787302200870591" type="Button">
+                                    <param id="0" name="Instance variable">name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;restart&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="558903600360344" type="Canvas" />
+                                <action id="-9" name="Destroy" sid="908522517396050" type="obj" />
+                                <action id="-3" name="Create object" sid="908428099225033" type="System">
+                                    <param id="0" name="Object to create">Canvas</param>
+                                    <param id="1" name="Layer">&quot;game&quot;</param>
+                                    <param id="2" name="X">-1000</param>
+                                    <param id="3" name="Y">-1000</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="129110273057146" type="System">
+                                    <param id="0" name="Object to create">obj</param>
+                                    <param id="1" name="Layer">&quot;game&quot;</param>
+                                    <param id="2" name="X">OriginalWindowWidth/2</param>
+                                    <param id="3" name="Y">OriginalWindowHeight/2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="309393525930591">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="158326870581574" type="Keyboard">
+                            <param id="0" name="Key">32</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="218656658673221" type="Function">
+                            <param id="0" name="Name">&quot;Restore&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="941170120642998">
+            <conditions>
+                <condition id="20" name="On update ready" sid="971358705637383" type="Browser" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set layer visible" sid="726265278748242" type="System">
+                    <param id="0" name="Layer">&quot;ui&quot;</param>
+                    <param id="1" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
